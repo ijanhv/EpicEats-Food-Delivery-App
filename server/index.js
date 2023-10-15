@@ -6,6 +6,8 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import UserRoute from './routes/User.js'
 import MenuRoute from './routes/MenuItem.js'
+import OrderRoute from './routes/Order.js'
+
 
 
 const app = express();
@@ -43,3 +45,4 @@ app.listen(8800, () => {
 
 app.use('/api/user', UserRoute)
 app.use('/api/menu', MenuRoute)
+app.use('/api/order', OrderRoute)

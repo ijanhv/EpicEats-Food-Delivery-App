@@ -17,7 +17,7 @@ export const register = async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({ name, email, password: hashedPassword, mobile });
-    console.log("***** HIII *****", user);
+
     user.verificationToken = crypto.randomBytes(20).toString("hex");
 
     const savedUser = await user.save();
@@ -123,7 +123,7 @@ export const login = async (req, res) => {
 
 
     //generate a token
-    const token = jwt.sign({ userId: user._id, name: user.name, email: user.email }, secretKey);
+    const token = jwt.sign({ userId: user._id, name: user.name, email: user.email, mobile: user.mobile }, secretKey);
     console.log(token);
 
     res.status(200).json({message: "Login Successfull", token, user });

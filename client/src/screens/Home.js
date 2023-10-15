@@ -8,6 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Cart from "./Cart";
 import ProfileScreen from "./Profile";
 import MyOrdersScreen from "./MyOrders";
+import BasketScreen from "./BasketScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +48,7 @@ function Home() {
       />
       <Tab.Screen
         name="Cart"
-        component={Cart}
+        component={BasketScreen}
         options={{ headerShown: false }}
       />
       <Tab.Screen

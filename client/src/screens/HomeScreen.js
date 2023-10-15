@@ -20,18 +20,22 @@ import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import BasketIcon from "../components/BasketIcon";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/features/UserSlice";
 
-const Tab = createBottomTabNavigator();
 
 const HomeScreen = () => {
-  const [user, setUser] = useState(null);
-  console.log(user);
+  const [userData, setUserData] = useState(null);
+  console.log(userData);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchUser = async () => {
       const token = await AsyncStorage.getItem("token");
       const decodedToken = jwt_decode(token);
-      setUser(decodedToken);
+      setUserData(decodedToken);
+      dispatch(setUser(decodedToken));
+      
     };
 
     fetchUser();
@@ -51,7 +55,7 @@ const HomeScreen = () => {
           <View className="flex-1">
             <Text className="font-bold text-gray-400 text-xs">Welcome!</Text>
             <Text className="font-bold text-lg">
-              {user ? user.name : "Guest"}
+              {userData ? userData.name : "Guest"}
               <Text className="font-bold text-lg text-green-500"> 👋</Text>
 
               <ChevronDownIcon size={20} color="#00CCBB" />

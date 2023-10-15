@@ -12,11 +12,14 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/features/UserSlice";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     const user = { email, password };
@@ -32,7 +35,9 @@ const LoginScreen = () => {
         AsyncStorage.setItem("token", token);
         Alert.alert("Login successful");
         navigation.navigate("Home");
-   
+
+        
+
       })
       .catch((err) => {
         Alert.alert("Login failed, please try again");
