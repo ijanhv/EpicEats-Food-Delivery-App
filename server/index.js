@@ -4,7 +4,9 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import bodyParser from "body-parser";
-import jwt from "jsonwebtoken";
+import UserRoute from './routes/User.js'
+import MenuRoute from './routes/MenuItem.js'
+
 
 const app = express();
 dotenv.config();
@@ -37,3 +39,7 @@ app.listen(8800, () => {
   connect();
   console.log("Server is running on port 8800");
 });
+
+
+app.use('/api/user', UserRoute)
+app.use('/api/menu', MenuRoute)

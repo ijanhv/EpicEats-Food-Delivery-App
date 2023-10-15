@@ -15,8 +15,30 @@ import {
 } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+const Tab = createBottomTabNavigator();
+
 
 const HomeScreen = () => {
+ const [user, setUser] = useState(null);
+ console.log(user);
+
+ 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = await AsyncStorage.getItem("token");
+      const decodedToken = jwt_decode(token);
+      setUser(decodedToken);
+    };
+
+    fetchUser();
+  }, []);
+
+
   return (
     <SafeAreaView>
       {/* HEADER */}
@@ -28,7 +50,9 @@ const HomeScreen = () => {
         <View className="flex-1">
           <Text className="font-bold text-gray-400 text-xs">Welcome!</Text>
           <Text className="font-bold text-lg">
-            John Doe
+            {user ? user.name : "Guest"}
+            <Text className="font-bold text-lg text-green-500"> 👋</Text> 
+
             <ChevronDownIcon size={20} color="#00CCBB" />
           </Text>
         </View>
@@ -83,6 +107,7 @@ const HomeScreen = () => {
         />
         {/* Featured */}
       </ScrollView>
+  
       {/* BODY */}
     </SafeAreaView>
   );
