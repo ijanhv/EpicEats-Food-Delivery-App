@@ -25,7 +25,7 @@ const FeaturedRow = ({ title, description, featuredCategory }) => {
         {menuItems?.map((dish, i) => (
           <FoodItemCard
             key={i}
-            // id={restaurant._id}
+            id={dish._id}
             imgUrl={dish.image}
             title={dish.name}
             category={dish.category}
