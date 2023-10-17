@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getCustomerOrders, getOrders, placeOrder, updateOrder } from '../controller/Order.js';
+import { getCustomerOrders, getOrders, getTodaysOrders, placeOrder, updateOrder } from '../controller/Order.js';
 
 const router = Router();
 
@@ -14,5 +14,7 @@ router.patch('/update-order/:id', updateOrder);
 // Get all orders for a specific customer
 router.get('/get-customer-orders/:id', getCustomerOrders);
 
+
+router.get('/todays-orders', getTodaysOrders)
 
 export default router;

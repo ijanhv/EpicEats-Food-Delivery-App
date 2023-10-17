@@ -3,6 +3,7 @@ import crypto from "crypto";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
+import Order from "../models/Order.js";
 
 export const register = async (req, res, next) => {
   try {
@@ -91,21 +92,19 @@ export const verifyEmail = async (req, res) => {
   }
 };
 
-
 const generateSecretKey = () => {
-    const secretKey = crypto.randomBytes(32).toString("hex");
-  
-    return secretKey;
-  };
-  
-  const secretKey = generateSecretKey();
+  const secretKey = crypto.randomBytes(32).toString("hex");
+
+  return secretKey;
+};
+
+const secretKey = generateSecretKey();
 
 // Login Controller
 
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
 
     //check if the user exists
     const user = await User.findOne({ email });
@@ -121,13 +120,34 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-
     //generate a token
-    const token = jwt.sign({ userId: user._id, name: user.name, email: user.email, mobile: user.mobile }, secretKey);
+    const token = jwt.sign(
+      {
+        userId: user._id,
+        name: user.name,
+        email: user.email,
+        mobile: user.mobile,
+      },
+      secretKey
+    );
     console.log(token);
 
-    res.status(200).json({message: "Login Successfull", token, user });
+    res.status(200).json({ message: "Login Successfull", token, user });
   } catch (error) {
     res.status(500).json({ message: "Login Failed" });
+  }
+};
+
+// get user orders
+
+export const getUserOrders = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    
+    const user = await User.findById(userId).populate("orders").exec();
+    const orders = user.orders;
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };

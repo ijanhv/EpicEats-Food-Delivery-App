@@ -91,8 +91,7 @@ const BasketScreen = () => {
           // empty the basket
 
           dispatch(emptyBasket());
-        
-
+      
           navigation.navigate("HomeScreen");
 
         })

@@ -18,10 +18,22 @@ export function MainNav({
         Overview
       </Link>
       <Link
+        href="/recieved"
+        className="text-sm font-medium transition-colors hover:text-primary "
+      >
+        Recieved Now
+      </Link>
+      <Link
         href="/orders"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
-        Orders
+        All Orders
+      </Link>
+      <Link
+        href="/today"
+        className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+      >
+        Today's Orders
       </Link>
       <Link
         href="/customers"

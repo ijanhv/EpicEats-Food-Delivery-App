@@ -96,7 +96,14 @@ export default function DataTableToolbar<TData>({
         </div>
       </div>
       <div className="space-x-3">
-
+       
+        {/* // {table.getColumn("city") && (
+        //   <DataTableFacetedFilter
+        //     column={table.getColumn("city")}
+        //     title="City"
+        //     options={availableCity}
+        //   />
+        // )}  */}
       </div>
     </div>
   );

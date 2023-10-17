@@ -7,6 +7,7 @@ const OrderSchema = new Schema({
     ref: "User",
     required: true,
   },
+
   items: [
     {
       menuItem: {
@@ -17,9 +18,13 @@ const OrderSchema = new Schema({
       quantity: { type: Number, required: true },
     },
   ],
- 
+
   total: { type: Number, required: true },
-  status: { type: String, enum: ["preparing", "completed"], default: "preparing" },
+  status: {
+    type: String,
+    enum: ["received", "preparing", "completed", "remove"],
+    default: "received",
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

@@ -10,6 +10,7 @@ const UserSchema = new Schema({
   mobile: { type: String },
   role: { type: String, enum: ["admin", "student", "faculty"], default: "student" },
   orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
+
   createdAt: { type: Date, default: Date.now, required: true },
 });
 

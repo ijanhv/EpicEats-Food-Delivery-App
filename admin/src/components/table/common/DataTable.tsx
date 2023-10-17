@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/table";
 import React from "react";
 
-import DataTableToolbar from "./DataTableToolbar";
+import DataTableToolbar from "../orders/DataTableToolbar";
 
 import { DataTablePagination } from "./DataTablePagination";
 
@@ -115,7 +115,7 @@ export function DataTable<TData, TValue>({
                           {cellValue === null || cellValue === ""
                             ? "---"
                             : typeof cellValue === "string" &&
-                              cellValue.length > 10
+                              cellValue.length > 20
                             ? cellValue.substring(0, 15) + "..."
                             : flexRender(
                                 cell.column.columnDef.cell,
