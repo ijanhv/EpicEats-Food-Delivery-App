@@ -21,14 +21,15 @@ interface Customer {
 }
 
 interface MenuItem {
-    _id: number;
+    _id?: number;
     name: string;
     image: string;
     price: number;
     quantity: number;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
     featured: boolean;
+    tags: string[];
     description: string;
     category: string;
 

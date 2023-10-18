@@ -3,12 +3,12 @@
 import * as z from "zod";
 
 export const menuItemSchema = z.object({
-  name: z.string().min(2).max(50),
-  category: z.string().min(2).max(50),
-  description: z.string().min(2).max(50),
-  image: z.string().min(2).max(50),
-  quantity: z.number(),
-  featured: z.boolean(),
+  name: z.string().min(2),
+  category: z.string().min(2),
+  description: z.string().min(2),
+  image: z.string().min(2).optional(),
+  quantity: z.number().optional(),
+  featured: z.boolean().optional(),
   tags: z.array(z.string()).refine((value) => value.some((item) => item)),
-  price: z.number(),
+  price: z.number().optional(),
 });

@@ -11,6 +11,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { apiUrl } from "../lib/apiUrl";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ const RegisterScreen = () => {
 
     // sent a POST request to /api/user/register
     axios
-      .post("http://localhost:8800/api/user/register", user)
+      .post(`http:localhost:8800/api/user/register`, user)
       .then((res) => {
         console.log(res.data);
         Alert.alert("Registration successful");

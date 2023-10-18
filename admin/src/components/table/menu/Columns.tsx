@@ -8,6 +8,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "../../ui/button";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { Sheet, SheetTrigger } from "@/components/ui/sheet";
+import UpdateMenuItem from "@/components/menu/UpdateMenuItem";
 
 export const columns: ColumnDef<MenuItem>[] = [
   {
@@ -15,8 +17,8 @@ export const columns: ColumnDef<MenuItem>[] = [
     header: () => <div className="text-center">Image</div>,
     cell: ({ row }) => {
       return (
-        <div className="flex items-center gap-3 mx-2">
-          <Avatar className="w-20 h-full rounded-full">
+        <div className="flex items-center justify-center gap-3 mx-2">
+          <Avatar className="w-10 h-full rounded-full">
             <AvatarImage
               src={row.original.image as string}
               alt="@shadcn"
@@ -50,10 +52,29 @@ export const columns: ColumnDef<MenuItem>[] = [
   },
 
   {
+    accessorKey: "tags",
+    header: "Tags",
+    cell: ({ row }) => {
+      return (
+        <div className="text-left font-medium flex flex-wrap">
+        {row.original.tags.map((tag) => (
+          <span
+            key={tag}
+            className={`bg-blue-300 border border-blue-400 text-blue-600 dark:bg-blue-400 dark:border-blue-900  dark:text-blue-900 px-2 mx-1 py-0.5 text-xs rounded-full`}
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+      );
+    },
+  },
+
+  {
     accessorKey: "category",
     header: "Category",
     filterFn: (row, id, value) => {
-        return value.includes(row.getValue(id));
+      return value.includes(row.getValue(id));
     },
     cell: ({ row }) => {
       return (
@@ -72,7 +93,8 @@ export const columns: ColumnDef<MenuItem>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const sales = row.original;
+      const item = row.original;
+
       // console.log(sales.id);
       return (
         <DropdownMenu>
@@ -86,6 +108,8 @@ export const columns: ColumnDef<MenuItem>[] = [
             <DropdownMenuItem className="mt-2">
               View All Details
             </DropdownMenuItem>
+
+            <UpdateMenuItem menuItem={item} />
           </DropdownMenuContent>
         </DropdownMenu>
       );

@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import MenuItem from "../models/MenuItem.js";
 
 export const getMenuItems = async (req, res) => {
@@ -42,10 +43,13 @@ export const createManyMenuItems = async (req, res) => {
 };
 
 export const updateMenuItem = async (req, res) => {
-  const { id: _id } = req.params;
+  const _id = req.params.id;
+
+  const item = await MenuItem.findById(_id);
+  if (!item) return res.status(404).send("No menu item with that id");
+
   const menuItem = req.body;
-  if (!mongoose.Types.ObjectId.isValid(_id))
-    return res.status(404).send("No menu item with that id");
+
   const updatedMenuItem = await MenuItem.findByIdAndUpdate(_id, menuItem, {
     new: true,
   });

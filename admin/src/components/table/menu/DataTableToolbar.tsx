@@ -62,7 +62,7 @@ export default function DataTableToolbar<TData>({
           <Button variant="outline">Export</Button>
         </div>
       </div>
-      <div className="flex justify-between mx-auto my-5 space-x-2">
+      <div className="flex justify-between my-5 space-x-2">
         <div className="flex items-center gap-3 ">
           <Label className="hidden lg:block">Name</Label>
           <Input
@@ -83,14 +83,8 @@ export default function DataTableToolbar<TData>({
             }
             className="h-8 w-[100px] lg:w-[200px]"
           />
+         
         </div>
-
-        {/* <Button
-          variant="outline"
-       
-        >
-          Add Menu Item
-        </Button> */}
 
         <Sheet>
           <SheetTrigger>

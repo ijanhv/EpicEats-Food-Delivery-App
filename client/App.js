@@ -8,10 +8,15 @@ import BasketScreen from "./src/screens/BasketScreen";
 import PreparingOrderScreen from "./src/screens/PreparingOrderScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import LoginScreen from "./src/screens/LoginScreen";
+import registerNNPushToken from "native-notify";
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  registerNNPushToken(13626, 'DmRzoBvBvY8GSptayK40E1');
+
+
   return (
     <NavigationContainer>
       <Provider store={store}>

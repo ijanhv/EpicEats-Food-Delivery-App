@@ -18,7 +18,6 @@ import FeaturedRow from "../components/FeaturedRow";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import BasketIcon from "../components/BasketIcon";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/UserSlice";

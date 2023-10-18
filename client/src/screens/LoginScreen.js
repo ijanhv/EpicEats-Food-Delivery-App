@@ -14,6 +14,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/UserSlice";
+import { apiUrl } from "../lib/apiUrl.js";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -28,8 +29,8 @@ const LoginScreen = () => {
     // sent a POST request to /api/user/login
 
     axios
-      .post("http://localhost:8800/api/user/login", user)
-      .then((res) => {
+    .post("http://localhost:8800/api/user/login", user)
+    .then((res) => {
         console.log(res.data);
         const token = res.data.token;
         AsyncStorage.setItem("token", token);

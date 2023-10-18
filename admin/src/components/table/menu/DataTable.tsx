@@ -54,8 +54,11 @@ export function DataTable<TData, TValue>({
   const categories = [
     { label: "All", value: "All" },
     { label: "Snacks", value: "snacks" },
-    { label: "South Indian", value: "South Indian" },
-    { label: "Chinese", value: "Chinese" },
+    { label: "Breakfast", value: "breakfast" },
+    { label: "South Indian", value: "south-indian" },
+    { label: "Chinese", value: "chinese" },
+    { label: "Lunch", value: "lunch" },
+    { label: "Drinks", value: "drinks" },
   ];
 
   const table = useReactTable({
@@ -91,12 +94,12 @@ export function DataTable<TData, TValue>({
       )}
       <div className="mt-4 border rounded-md dark:border-gray-600">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-gray-200 dark:bg-gray-900 ">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="">
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
