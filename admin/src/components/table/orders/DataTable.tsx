@@ -23,8 +23,8 @@ import {
 import React from "react";
 
 import DataTableToolbar from "../orders/DataTableToolbar";
+import { DataTablePagination } from "../common/DataTablePagination";
 
-import { DataTablePagination } from "./DataTablePagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -76,6 +76,8 @@ export function DataTable<TData, TValue>({
     <>
       <DataTableToolbar table={table} />
       <div className="mt-4 border rounded-md dark:border-gray-600">
+    
+    
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

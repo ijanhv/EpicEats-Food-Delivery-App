@@ -35,6 +35,12 @@ export function MainNav({
       >
         Today's Orders
       </Link>
+    <Link 
+      href="/menu"
+      className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+    > Menu Items
+    </Link>
+
       <Link
         href="/customers"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"

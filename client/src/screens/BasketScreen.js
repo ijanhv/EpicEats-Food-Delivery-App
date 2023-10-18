@@ -92,7 +92,7 @@ const BasketScreen = () => {
 
           dispatch(emptyBasket());
       
-          navigation.navigate("HomeScreen");
+          navigation.navigate("PreparingOrderScreen");
 
         })
         .catch((err) => {

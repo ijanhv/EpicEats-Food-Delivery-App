@@ -1,7 +1,7 @@
 "use client";
 import { CalendarDateRangePicker } from "@/components/dashboard/DateRangePicker";
 import { columns } from "@/components/table/orders/Columns";
-import { DataTable } from "@/components/table/common/DataTable";
+import { DataTable } from "@/components/table/orders/DataTable";
 import { Button } from "@/components/ui/button";
 import { useFetchOrdersQuery } from "@/hooks/useOrders";
 

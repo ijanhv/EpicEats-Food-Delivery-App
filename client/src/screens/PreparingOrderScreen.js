@@ -10,19 +10,31 @@ import * as Animatable from "react-native-animatable";
 import * as Progress from "react-native-progress";
 import { useNavigation } from "@react-navigation/native";
 import { XCircleIcon } from "react-native-heroicons/outline";
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/features/UserSlice";
+import { useMyOrders } from "../hooks/orders";
 
 const PreparingOrderScreen = () => {
   const navigation = useNavigation();
+    // useEffect(() => {
+    //   setTimeout(() => {
+    //     navigation.navigate("Delivery");
+    //   }, 2000);
+    // }, []);
 
-  //   useEffect(() => {
-  //     setTimeout(() => {
-  //       navigation.navigate("Delivery");
-  //     }, 2000);
-  //   }, []);
+    const user = useSelector(selectUser);
+
+    const orders = useMyOrders({ id: user?.userId });
+
+
+    // get the most recent order status
+
+    const mostRecentOrder = orders[orders.length - 1];
+    console.log("mostRecentOrder", mostRecentOrder);
 
   return (
     <SafeAreaView className="bg-[#00CCBB] flex-1 justify-center items-center">
-      <Animatable.Image
+     <Animatable.Image
         // source={require("../../assets/preparing.gif")}
         source={{
           uri: "https://media3.giphy.com/media/yScQL8JL4mc6YJAfnm/giphy.gif",
@@ -37,7 +49,8 @@ const PreparingOrderScreen = () => {
         iterationCount={1}
         className="text-2xl my-10 mx-5 text-white font-bold text-center"
       >
-        Wating for someone to accept your order
+        {/* {mostRecentOrder.status === "received" ? "Your order has been received!" : "Your order is being prepared!"} */}
+        Your order is being prepared!
       </Animatable.Text>
 
       <Image
