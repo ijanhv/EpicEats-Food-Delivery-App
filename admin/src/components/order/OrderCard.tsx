@@ -90,7 +90,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                 ? "preparing"
                 : order?.status === "preparing"
                 ? "completed"
-                : "remove"
+                : "done"
             )
           }
         >

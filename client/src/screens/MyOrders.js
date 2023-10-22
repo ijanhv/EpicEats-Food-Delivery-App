@@ -14,23 +14,16 @@ import { useMyOrders } from "../hooks/orders";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { selectUser } from "../redux/features/UserSlice";
+import axios from "axios";
 
 const MyOrdersScreen = () => {
-  // const [user, setUser] = useState(null);
+
   const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const token = await AsyncStorage.getItem("token");
-  //     const decodedToken = jwt_decode(token);
-  //     setUser(decodedToken);
-  //   };
-
-  //   fetchUser();
-  // }, []);
   const user = useSelector(selectUser);
 
   const orders = useMyOrders({ id: user?.userId });
+  console.log("orders", orders);
 
   return (
     <SafeAreaView className="flex-1 bg-white">

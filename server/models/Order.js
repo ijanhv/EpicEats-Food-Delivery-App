@@ -22,7 +22,7 @@ const OrderSchema = new Schema({
   total: { type: Number, required: true },
   status: {
     type: String,
-    enum: ["received", "preparing", "completed", "remove"],
+    enum: ["received", "preparing", "completed", "done"],
     default: "received",
   },
   createdAt: { type: Date, default: Date.now },

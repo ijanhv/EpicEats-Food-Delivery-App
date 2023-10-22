@@ -10,44 +10,56 @@ import RegisterScreen from "./src/screens/RegisterScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import registerNNPushToken from "native-notify";
 
+import {
+  QueryClient,
+  QueryClientProvider,
+  focusManager,
+} from "@tanstack/react-query";
+
 
 const Stack = createNativeStackNavigator();
 
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { retry: 2 } },
+});
+
 export default function App() {
-  registerNNPushToken(13626, 'DmRzoBvBvY8GSptayK40E1');
 
 
   return (
-    <NavigationContainer>
-      <Provider store={store}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Register"
-            component={RegisterScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Basket"
-            component={BasketScreen}
-            options={{ presentation: "modal", headerShown: false }}
-          />
-          <Stack.Screen
-            name="PreparingOrderScreen"
-            component={PreparingOrderScreen}
-            options={{ presentation: "fullScreenModal", headerShown: false }}
-          />
-        </Stack.Navigator>
-      </Provider>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <Provider store={store}>
+          <Stack.Navigator>
+            {/* <Stack.Screen
+              name="Register"
+              component={RegisterScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{ headerShown: false }}
+            /> */}
+            <Stack.Screen
+              name="Home"
+              component={Home}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Basket"
+              component={BasketScreen}
+              options={{ presentation: "modal", headerShown: false }}
+            />
+            <Stack.Screen
+              name="PreparingOrderScreen"
+              component={PreparingOrderScreen}
+              options={{ presentation: "fullScreenModal", headerShown: false }}
+            />
+          </Stack.Navigator>
+        </Provider>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }

@@ -83,9 +83,9 @@ export const getCustomerOrders = async (req, res) => {
   try {
     const userId = req.params.id;
     const orders = await Order.find({ customer: userId })
-      .populate('customer')
-      .populate('items.menuItem')
-      .sort({ createdAt: -1 }); // Sort by createdAt in descending order
+    .populate('customer')
+    .populate('items.menuItem')
+    .sort({ createdAt: -1 }); // Sort by createdAt in descending order
     res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ message: error.message });

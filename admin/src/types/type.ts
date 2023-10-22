@@ -28,6 +28,7 @@ interface MenuItem {
     quantity: number;
     createdAt?: string;
     updatedAt?: string;
+    veg: boolean;
     featured: boolean;
     tags: string[];
     description: string;

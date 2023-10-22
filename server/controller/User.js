@@ -143,7 +143,6 @@ export const login = async (req, res) => {
 export const getUserOrders = async (req, res) => {
   try {
     const userId = req.params.id;
-    
     const user = await User.findById(userId).populate("orders").exec();
     const orders = user.orders;
     res.status(200).json(orders);

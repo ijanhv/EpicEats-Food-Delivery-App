@@ -7,6 +7,7 @@ const MenuItemSchema = new Schema({
   description: { type: String },
   image: { type: String, required: true },
   quantity: { type: Number, required: true },
+  veg: { type: Boolean, default: false, required: true, default: true },
   featured: { type: Boolean, default: false, required: true },
   tags: { type: [String], default: ["none"], required: true },
   price: { type: Number, required: true },

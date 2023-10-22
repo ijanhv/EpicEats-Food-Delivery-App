@@ -2,12 +2,8 @@ import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import { ArrowRightIcon } from "react-native-heroicons/outline";
 import FoodItemCard from "./FoodItemCard";
-import { useMenuItems } from "../hooks/menuItems";
 
-const FeaturedRow = ({ title, description, featuredCategory }) => {
-  const menuItems = useMenuItems();
-
-
+const FeaturedRow = ({ title, description, featuredCategory, items }) => {
 
   return (
     <View>
@@ -22,7 +18,7 @@ const FeaturedRow = ({ title, description, featuredCategory }) => {
         showsHorizontalScrollIndicator={false}
         className="pt-4"
       >
-        {menuItems?.map((dish, i) => (
+        {items?.map((dish, i) => (
           <FoodItemCard
             key={i}
             id={dish._id}

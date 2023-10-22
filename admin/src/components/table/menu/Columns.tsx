@@ -38,6 +38,18 @@ export const columns: ColumnDef<MenuItem>[] = [
     header: "Name",
   },
   {
+    accessorKey: "veg",
+    header: "Veg or Non-Veg",
+    cell: ({ row }) => {
+      return (
+        <div className="text-left font-medium">
+          <span className="bg-slate-700  border-green-600 w-10 h-10"> 
+          </span>
+        </div>
+      );
+    }
+  },
+  {
     accessorKey: "description",
     header: "Description",
   },

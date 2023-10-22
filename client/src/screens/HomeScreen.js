@@ -21,6 +21,9 @@ import jwt_decode from "jwt-decode";
 import BasketIcon from "../components/BasketIcon";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/UserSlice";
+import { useQuery } from "@tanstack/react-query";
+import {  useMenuItems } from "../hooks/menuItems";
+
 
 
 const HomeScreen = () => {
@@ -28,17 +31,27 @@ const HomeScreen = () => {
   console.log(userData);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     const fetchUser = async () => {
       const token = await AsyncStorage.getItem("token");
       const decodedToken = jwt_decode(token);
       setUserData(decodedToken);
       dispatch(setUser(decodedToken));
-      
     };
 
     fetchUser();
   }, []);
+
+
+
+  const menuItems = useMenuItems();
+  console.log("menuItems", menuItems);
+
+  const todaySpecial = menuItems.filter(item => item.tags.includes("todays-special"));
+  const popularItems = menuItems.filter(item => item.tags.includes("popular"));
+  const featuredItems = menuItems.filter(item => item.featured);
+
 
   return (
     <>
@@ -48,7 +61,7 @@ const HomeScreen = () => {
 
         <View className="flex-row pb-3 items-center mx-4 space-x-2 ">
           <Image
-            source={{ uri: "https://links.papareact.com/wru" }}
+            source={{ uri: "https://cdn.dribbble.com/users/1365713/screenshots/5381232/foodiction.png" }}
             className="h-7 w-7 bg-gray-300 p-4 rounded-full"
           />
           <View className="flex-1">
@@ -96,18 +109,21 @@ const HomeScreen = () => {
             title="Today's Specials"
             description="Must try dishes"
             featuredCategory="featured"
+            items={todaySpecial}
           />
           <FeaturedRow
             id="2"
-            title="Featured"
-            description="Must try dishes"
+            title="Popular"
+            description="Some of our best sellers"
             featuredCategory="featured"
+            items={popularItems}
           />
           <FeaturedRow
             id="3"
             title="Featured"
             description="Must try dishes"
             featuredCategory="featured"
+            items={featuredItems}
           />
           {/* Featured */}
         </ScrollView>

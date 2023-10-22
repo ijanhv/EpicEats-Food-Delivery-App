@@ -12,9 +12,9 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useDispatch } from "react-redux";
-import { setUser } from "../redux/features/UserSlice";
-import { apiUrl } from "../lib/apiUrl.js";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser, setUser } from "../redux/features/UserSlice";
+import jwt_decode from "jwt-decode";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -25,20 +25,21 @@ const LoginScreen = () => {
   const handleLogin = () => {
     const user = { email, password };
 
+    
+
     console.log(user);
     // sent a POST request to /api/user/login
 
     axios
-    .post("http://localhost:8800/api/user/login", user)
-    .then((res) => {
+      .post("http://localhost:8800/api/user/login", user)
+      .then((res) => {
         console.log(res.data);
         const token = res.data.token;
         AsyncStorage.setItem("token", token);
+        const decodedToken = jwt_decode(token);
+        dispatch(setUser(decodedToken));
         Alert.alert("Login successful");
         navigation.navigate("Home");
-
-        
-
       })
       .catch((err) => {
         Alert.alert("Login failed, please try again");

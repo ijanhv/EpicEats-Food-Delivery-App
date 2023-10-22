@@ -65,7 +65,7 @@ const FoodItemCard = ({
         </View>
 
         <View className="text-xs rounded-full my-1 ">
-          <Text className="text-xs font-semibold ">{category}</Text>
+          <Text className="text-xs font-bold text-blue-800">{category.toUpperCase()}</Text>
         </View>
 
         <Text className="text-xs text-gray-500 my-1 max-h-10">

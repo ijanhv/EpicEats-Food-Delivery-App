@@ -32,6 +32,7 @@ const UpdateMenuItem: React.FC<UpdateMenuItemProps> = ({ menuItem }) => {
       category: menuItem.category as string,
       image: menuItem.image,
       tags: menuItem.tags as string[],
+      veg: menuItem.veg,
       featured: menuItem.featured,
     },
   });
@@ -47,6 +48,7 @@ const UpdateMenuItem: React.FC<UpdateMenuItemProps> = ({ menuItem }) => {
       category: values.category,
       image: values.image as string,
       tags: values.tags as string[],
+      veg: values.veg as boolean,
       featured: values.featured as boolean,
     });
   }

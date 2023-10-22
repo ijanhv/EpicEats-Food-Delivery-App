@@ -9,11 +9,25 @@ import Cart from "./Cart";
 import ProfileScreen from "./Profile";
 import MyOrdersScreen from "./MyOrders";
 import BasketScreen from "./BasketScreen";
+import { useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import jwt_decode from "jwt-decode";
+import { useDispatch } from "react-redux";
 
 const Tab = createBottomTabNavigator();
 
 function Home() {
-  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = await AsyncStorage.getItem("token");
+      const decodedToken = jwt_decode(token);
+      dispatch(setUser(decodedToken));
+    };
+
+    fetchUser();
+  }, []);
 
   const getTabBarIcon = (route, focused, color, size) => {
     let iconName;
@@ -56,13 +70,12 @@ function Home() {
         component={ProfileScreen}
         options={{ headerShown: false }}
       />
-      
+
       <Tab.Screen
         name="My Orders"
         component={MyOrdersScreen}
         options={{ headerShown: false }}
       />
-      
     </Tab.Navigator>
   );
 }

@@ -7,7 +7,6 @@ import bodyParser from "body-parser";
 import UserRoute from './routes/User.js'
 import MenuRoute from './routes/MenuItem.js'
 import OrderRoute from './routes/Order.js'
-import * as FirebaseService from "./FirebaseService.js";
 
 
 const app = express();
@@ -39,12 +38,6 @@ app.use((err, req, res, next) => {
   return res.status(errorStatus).send(errorMessage);
 });
 
-app.post('/registerPushToken', bodyParser.json(), async (req, res) => {
-  const userId = String(req.body.userId)
-  const token = String(req.body.token)
-  await FirebaseService.saveToken(userId, token)
-  res.status(200).json({ message: 'success' })
-})
 
 
 app.listen(8800, () => {
