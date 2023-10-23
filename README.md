@@ -6,14 +6,13 @@ The Food Delivery App is a comprehensive, full-stack application that revolution
 
 - Browse a diverse menu of mouthwatering dishes.
 - Order your favorite items with a few taps/clicks.
-- Real-time order tracking.
-- Secure payment processing.
+- Real-time order tracking.   
 - User authentication and profiles.
 - Easy-to-use admin panel for managing the app.
 
-<details><summary>
+
 ## Technologies Used 🛠️
-</summary>
+
 
 ### Web App
 - [Next.js](https://nextjs.org/)
@@ -33,7 +32,7 @@ The Food Delivery App is a comprehensive, full-stack application that revolution
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/) (or your database of choice)
 
-</details>
+
 
 ## Getting Started 🏗️
 
@@ -70,3 +69,16 @@ The Food Delivery App is a comprehensive, full-stack application that revolution
     yarn start or npm start or pnpm start
     ```
 
+## Contact 📧
+
+If you want to contact me you can reach me at patil.janhavi1207@gmail.com
+
+## Roadmap 🗺️
+
+Our future plans for EpicEats include implementing:
+
+- Support for multiple languages and currencies.
+- Enhanced personalization features.
+- Stay tuned for these exciting updates!
+
+We hope you enjoy using EpicEats! Bon appétit! 🍽️
