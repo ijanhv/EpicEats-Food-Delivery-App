@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MinusCircleIcon, PlusCircleIcon } from "react-native-heroicons/solid";
+
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToBasket,
-  removeFromBasket,
-  selectBasketItemsWithId,
-} from "../redux/features/BasketSlice";
+import { addToBasket, removeFromBasket, selectBasketItemsWithId } from "../redux/features/BasketSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import {
+//   addToBasket,
+//   removeFromBasket,
+//   selectBasketItemsWithId,
+// } from "../redux/features/BasketSlice";
 
 interface FoodItemCardProps {
   id: string;
   imgUrl: string;
   title: string;
-
   category: string;
   description: string;
   price: number;
@@ -23,7 +25,6 @@ const FoodItemCard = ({
   id,
   imgUrl,
   title,
-
   category,
   description,
   price,
@@ -43,7 +44,9 @@ const FoodItemCard = ({
     if (items.length > 0) return;
 
     dispatch(removeFromBasket({ id }));
+
   };
+
 
   return (
     <TouchableOpacity
@@ -103,13 +106,12 @@ const FoodItemCard = ({
                   disabled={!items.length}
                   onPress={removeItemFromBasket}
                 >
-                  <MinusCircleIcon
-                    
-                    size={30}
-                  />
+                  <MinusCircleIcon size={30} />
                 </TouchableOpacity>
                 <Text>{items.length}</Text>
-                <TouchableOpacity onPress={addItemToBasket}>
+                <TouchableOpacity
+                  onPress={addItemToBasket}
+                >
                   <PlusCircleIcon size={30} />
                 </TouchableOpacity>
               </View>
@@ -122,3 +124,14 @@ const FoodItemCard = ({
 };
 
 export default FoodItemCard;
+
+// id: string;
+// _id: string;
+// name: string;
+// category: string;
+// description: string;
+// image: string;
+// quantity: number;
+// featured: boolean;
+// tags: string[];
+// price: number;

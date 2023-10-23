@@ -1,5 +1,6 @@
 "use client"
 
+import { useGetRevenueByDay, useGetRevenueByMonth } from "@/hooks/useOrders"
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts"
 
 const data = [
@@ -54,9 +55,11 @@ const data = [
 ]
 
 export function Overview() {
+  const { data: revenueByDay, isLoading, isError } = useGetRevenueByDay()
+  const {data: revenueByMonth, isLoading: isLoadingMonth, isError: isErrorMonth} = useGetRevenueByMonth()
   return (
     <ResponsiveContainer width="100%" height={350}>
-      <BarChart data={data}>
+      <BarChart data={revenueByDay as any}>
         <XAxis
           dataKey="name"
           stroke="#888888"

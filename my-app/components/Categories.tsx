@@ -9,18 +9,21 @@ const Categories = () => {
       name: "Breakfast",
       image: "https://links.papareact.com/ikj",
       color: "bg-[#f59e0b]",
+      link: "/category/breakfast",
     },
     {
       _id: 2,
       name: "Lunch",
       image: "https://links.papareact.com/3pn",
       color: "bg-[#10b981]",
+      link: "/category/lunch",
     },
     {
       _id: 3,
       name: "Snacks",
       image: "https://links.papareact.com/28w",
       color: "bg-[#f472b6]",
+      link: "/category/snacks",
     },
 
     {
@@ -28,6 +31,7 @@ const Categories = () => {
       name: "Drinks",
       image: "https://links.papareact.com/2fm",
       color: "bg-[#ec4899]",
+      link: "/category/drinks",
     },
   ];
   return (
@@ -42,6 +46,7 @@ const Categories = () => {
           title={category.name}
           color={category.color}
           imgUrl={category.image}
+          link={category.link}
         />
       ))}
     </ScrollView>

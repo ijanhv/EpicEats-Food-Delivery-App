@@ -16,7 +16,7 @@ export default function TabLayout() {
 
   return (
     <Tabs
-      initialRouteName="index"
+      initialRouteName="login"
       screenOptions={({ route }) => ({
         tabBarActiveTintColor: "#00CCBB",
         tabBarInactiveTintColor: "gray",
@@ -25,50 +25,55 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="cart-arrow-down" color={color} />
-          ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? "light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          title: "Home",
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          headerShown: false,
         }}
       />
-
       <Tabs.Screen
         name="cart"
         options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          title: "Cart",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="cart-arrow-down" color={color} />
+          ),
+          headerShown: false,
+          // headerRight: () => (
+          //   <Link href="/modal" asChild>
+          //     <Pressable>
+          //       {({ pressed }) => (
+          //         <FontAwesome
+          //           name="info-circle"
+          //           size={25}
+          //           color={Colors[colorScheme ?? "light"].text}
+          //           style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+          //         />
+          //       )}
+          //     </Pressable>
+          //   </Link>
+          // ),
         }}
       />
+
+      
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Tab Two",
+          title: "Profile",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="user-circle" color={color} />
           ),
+          headerShown: false,
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="orders"
         options={{
-          title: "Tab Two",
+          title: "My Orders",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="address-book" color={color} />
           ),
+          headerShown: false,
         }}
       />
     </Tabs>

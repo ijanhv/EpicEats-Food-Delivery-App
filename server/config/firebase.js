@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 
-
+import {getDatabase, ref, set, get, child } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD5-WDWAHvutK4llXRkffj3N3OoGtzFGZc",
@@ -16,5 +16,12 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const storage =  getStorage(app)
+export const _ = initializeApp(firebaseConfig);
+const db = getDatabase();
+const dbRef = ref(db);
+
+export const saveToken = async (userId, token) => {
+    const values = (await get(child(dbRef, `userTokens/${userId}`))).val();
+    const payload = { ...values, token};
+    set(ref(db, `userTokens/${userId}`), payload);
+}

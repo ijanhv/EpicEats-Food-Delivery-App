@@ -1,17 +1,19 @@
 "use client";
 import { CalendarDateRangePicker } from "@/components/dashboard/DateRangePicker";
+import Loader from "@/components/loading/Loader";
 import { columns } from "@/components/table/orders/Columns";
 import { DataTable } from "@/components/table/orders/DataTable";
 import { Button } from "@/components/ui/button";
 import { useFetchOrdersQuery } from "@/hooks/useOrders";
 
 export default function OrdersPage() {
-  const { data, isLoading, isError, refetch } = useFetchOrdersQuery();
+  const { data, isLoading, isError, refetch, isSuccess } =
+    useFetchOrdersQuery();
   console.log(data);
 
-  if (isLoading) return <div>Loading...</div>;
+  // if (isLoading) return <div>Loading...</div>;
 
-  if (isError) return <div>Error</div>;
+  // if (isError) return <div>Error</div>;
 
   return (
     <>
@@ -26,7 +28,9 @@ export default function OrdersPage() {
           </div>
         </div>
         <div className="mt-10">
-          <DataTable  columns={columns} data={data}/>
+          {isLoading && <Loader />}
+          {isError && <div>Error</div>}
+          {isSuccess && <DataTable columns={columns} data={data} />}
         </div>
       </div>
     </>

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getCustomerOrders, getOrders, getTodaysOrders, placeOrder, updateOrder } from '../controller/Order.js';
+import { getCustomerOrders, getDashboardDetails, getOrders, getRevenueByMonth, getRevnueByDay, getTodaysOrders, placeOrder, updateOrder } from '../controller/Order.js';
 
 const router = Router();
 
@@ -16,5 +16,12 @@ router.get('/get-customer-orders/:id', getCustomerOrders);
 
 
 router.get('/todays-orders', getTodaysOrders)
+
+router.get('/dashboard', getDashboardDetails)
+
+
+router.get('/revenue-by-day', getRevnueByDay)
+
+router.get('/revenue-by-month', getRevenueByMonth)
 
 export default router;

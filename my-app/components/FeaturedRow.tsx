@@ -4,6 +4,7 @@ import { ArrowRightIcon } from "react-native-heroicons/outline";
 import FoodItemCard from "./FoodItemCard";
 
 interface FeaturedRowProps {
+  id: string;
   title: string;
   description: string;
   featuredCategory: string;
@@ -11,7 +12,7 @@ interface FeaturedRowProps {
 }
 
 
-const FeaturedRow = ({ title, description, featuredCategory, items }:  FeaturedRowProps ) => {
+const FeaturedRow = ({id, title, description, featuredCategory, items }:  FeaturedRowProps ) => {
 
   return (
     <View>
@@ -29,13 +30,12 @@ const FeaturedRow = ({ title, description, featuredCategory, items }:  FeaturedR
         {items?.map((dish, i) => (
           <FoodItemCard
             key={i}
-            id={dish._id}
-            imgUrl={dish.image}
-            title={dish.name}
-            category={dish.category}
-            description={dish.description}
-     
-            price={dish.price}
+            id={dish._id as string}
+            imgUrl={dish.image as string}
+            title={dish.name as string}
+            category={dish.category as string}
+            description={dish.description as string}
+            price={dish.price as number}
             
           />
         ))}

@@ -17,6 +17,7 @@ const fetchOrders = async () => {
 export const useFetchOrdersQuery = (): UseQueryResult<Order[]> => {
   return useQuery({
     queryKey: ["orders"],
+   
     queryFn: () => fetchOrders(),
     staleTime: Infinity,
   });
@@ -32,6 +33,8 @@ const fetchTodaysOrders = async () => {
 export const useFetchTodaysOrdersQuery = (): UseQueryResult<Order[]> => {
   return useQuery({
     queryKey: ["todays-orders"],
+    // refetchOnWindowFocus: true,
+    // refetchInterval: 2000,
     queryFn: () => fetchTodaysOrders(),
     staleTime: Infinity,
   });
@@ -70,4 +73,57 @@ export const useUpdateOrderStatus = () => {
   );
 };
 
-// update
+// get total orders
+
+const getDashboardDetails = async () => {
+  const { data } = await axios.get(
+    `http://localhost:8800/api/order/dashboard`
+  );
+  return data;
+};
+
+// total number of orders
+
+export const useGetDashboardDetails = (): UseQueryResult<DashboardDetails> => {
+  return useQuery({
+    queryKey: ["dashboard"],
+    queryFn: () => getDashboardDetails(),
+    staleTime: Infinity,
+  });
+};
+
+
+// get revenue by day 
+
+const getRevenueByDay = async () => {
+  const { data } = await axios.get(
+    `http://localhost:8800/api/order/revenue-by-day`
+  );
+  return data;
+};
+
+export const useGetRevenueByDay = (): UseQueryResult<RevenueByDay> => {
+  return useQuery({
+    queryKey: ["revenue-by-day"],
+    queryFn: () => getRevenueByDay(),
+    staleTime: Infinity,
+  });
+}
+
+// get revenue by month
+
+
+const getRevenueByMonth = async () => {
+  const { data } = await axios.get(
+    `http://localhost:8800/api/order/revenue-by-month`
+  );
+  return data;
+};
+
+export const useGetRevenueByMonth = (): UseQueryResult<RevenueByMonth> => {
+  return useQuery({
+    queryKey: ["revenue-by-month"],
+    queryFn: () => getRevenueByMonth(),
+    staleTime: Infinity,
+  });
+}

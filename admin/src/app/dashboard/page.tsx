@@ -1,9 +1,7 @@
+"use client";
 import { CalendarDateRangePicker } from "@/components/dashboard/DateRangePicker";
-import { MainNav } from "@/components/dashboard/MainNav";
 import { Overview } from "@/components/dashboard/Overview";
 import { RecentSales } from "@/components/dashboard/RecentSales";
-
-import { UserNav } from "@/components/dashboard/UserNav";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,14 +11,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Image from "next/image";
+import { useGetDashboardDetails } from "@/hooks/useOrders";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export default function DashboardPage() {
+  const { data: dahsboardData, isLoading, isError } = useGetDashboardDetails();
+
   return (
     <>
-  
       <div className="flex-col md:flex">
-        
         <div className="flex-1 space-y-4  pt-6">
           <div className="flex items-center justify-between space-y-2">
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
@@ -47,7 +46,7 @@ export default function DashboardPage() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Total Revenue
+                      Total Orders
                     </CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +62,13 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">$45,231.89</div>
+                    <div className="text-2xl font-bold">
+                      {isLoading ? (
+                        <ReloadIcon className="animate-spin m-5" />
+                      ) : (
+                        dahsboardData?.totalOrders
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       +20.1% from last month
                     </p>
@@ -72,7 +77,7 @@ export default function DashboardPage() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Subscriptions
+                      Total Revenue
                     </CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +95,13 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+2350</div>
+                    <div className="text-2xl font-bold">
+                      {isLoading ? (
+                        <ReloadIcon className="animate-spin m-5" />
+                      ) : (
+                        dahsboardData?.totalRevenue
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       +180.1% from last month
                     </p>
@@ -98,7 +109,9 @@ export default function DashboardPage() {
                 </Card>
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Sales</CardTitle>
+                    <CardTitle className="text-sm font-medium">
+                      Total Customers
+                    </CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -114,7 +127,13 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+12,234</div>
+                    <div className="text-2xl font-bold">
+                      {isLoading ? (
+                        <ReloadIcon className="animate-spin m-5" />
+                      ) : (
+                        dahsboardData?.totalCustomers
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       +19% from last month
                     </p>
@@ -123,7 +142,7 @@ export default function DashboardPage() {
                 <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Active Now
+                      Average Sale
                     </CardTitle>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +158,13 @@ export default function DashboardPage() {
                     </svg>
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+573</div>
+                    <div className="text-2xl font-bold">
+                      {isLoading ? (
+                        <ReloadIcon className="animate-spin m-5" />
+                      ) : (
+                        dahsboardData?.averageSale
+                      )}
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       +201 since last hour
                     </p>

@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import bodyParser from "body-parser";
+import bodyParser  from "body-parser";
 import UserRoute from './routes/User.js'
 import MenuRoute from './routes/MenuItem.js'
 import OrderRoute from './routes/Order.js'
+import { saveToken } from "./config/firebase.js";
 
 
 const app = express();
@@ -25,10 +26,15 @@ const connect = async () => {
 };
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }, { limit: "50mb" }, { parameterLimit: 50000 }));
 app.use(bodyParser.json());
 
-app.use(express.json());
+
+
+
+// app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+
+app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
 
 app.use((err, req, res, next) => {
@@ -39,6 +45,13 @@ app.use((err, req, res, next) => {
 });
 
 
+app.post('/registerPushToken', async  (req, res) => {
+  const userId = String(req.body.userId);
+  const token = String(req.body.token);
+  
+  await saveToken(userId, token);
+  res.status(201).send();
+} )
 
 app.listen(8800, () => {
   connect();
@@ -49,4 +62,3 @@ app.listen(8800, () => {
 app.use('/api/user', UserRoute)
 app.use('/api/menu', MenuRoute)
 app.use('/api/order', OrderRoute)
-

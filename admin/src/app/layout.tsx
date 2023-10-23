@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
 import { Toast } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 // const inter = Inter({ subsets: ["latin"] });
 // const lora = Lora({ subsets: ["latin"] });
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={figtree.className}>
         <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Toaster />
             <div className="border-b dark:border-gray-600">

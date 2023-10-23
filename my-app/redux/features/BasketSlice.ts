@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+
 // Define the type for your state
 interface BasketState {
   items: { id: string; price: number, title: string, description: string, imgUrl: string}[];

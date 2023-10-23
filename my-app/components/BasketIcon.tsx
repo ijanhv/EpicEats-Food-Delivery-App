@@ -6,9 +6,12 @@ import {
   selectBasketItems,
   selectBasketTotal,
 } from "../redux/features/BasketSlice";
+import { Navigation } from "react-native-navigation";
+import Cart from "../app/(tabs)/cart";
+import { router } from "expo-router";
 
 const BasketIcon = () => {
-  const navigation = useNavigation();
+
 
   const items = useSelector(selectBasketItems);
   console.log("items", items);
@@ -19,7 +22,7 @@ const BasketIcon = () => {
   return (
     <View className="absolute bottom-4 w-full z-50">
       <TouchableOpacity
-        // onPress={() => navigation.navigate("cart")}
+        onPress={() => router.push('/cart')}
         className="bg-[#00CCBB] mx-5 p-4 rounded-lg items-center space-x-1 flex-row"
       >
         <Text className="text-white font-extrabold text-lg bg-[#01A296] py-1 px-2">

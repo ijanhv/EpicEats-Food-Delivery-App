@@ -73,3 +73,24 @@ export const getMenuItemById = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+// get menu items by category in params
+
+export const getMenuItemsByCategory = async (req, res) => {
+  try {
+    const category = req.params.category;
+    const categoryVariations = [
+      category.toLowerCase(),
+      category.toUpperCase(),
+      category.charAt(0).toUpperCase() + category.slice(1),
+    ];
+
+    const menuItems = await MenuItem.find({
+      category: { $in: categoryVariations },
+    });
+    console.log(menuItems);
+    res.status(200).json(menuItems);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
