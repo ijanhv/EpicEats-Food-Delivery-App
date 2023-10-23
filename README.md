@@ -1,6 +1,6 @@
 # Food Delivery App 🍔
 
-This is a full-stack food delivery application built with modern web and mobile technologies.
+The Food Delivery App is a comprehensive, full-stack application that revolutionizes the way people order and enjoy their favorite foods. This application seamlessly combines a user-friendly web interface built with Next.js, Tailwind CSS, TypeScript, and React, with an elegant mobile app created using React Native, Tailwind CSS, TypeScript, and React Navigation.
 
 ## Features 🚀
 
@@ -37,3 +37,32 @@ This is a full-stack food delivery application built with modern web and mobile 
 
    ```bash
    git clone https://github.com/ijanhv/EpicEats-Food-Delivery-App
+
+2. Navigate to the project directory:
+
+   ```bash
+    cd EpicEats-Food-Delivery-App
+    cd admin
+    npm install or yarn or pnpm install
+    cd ../my-app
+    yarn or npm install or pnpm install
+    cd ../server
+    yarn or npm install or pnpm install
+   ```
+3. Install the dependencies:
+
+   ```bash
+   npm install
+
+   ```
+4. Start the development server:
+
+   ```bash
+    cd admin
+    npm run dev or yarn dev or pnpm dev
+    cd ../my-app
+    yarn start or npm start or pnpm start
+    cd ../server
+    yarn start or npm start or pnpm start
+    ```
+
