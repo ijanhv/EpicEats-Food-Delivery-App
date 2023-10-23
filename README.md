@@ -79,6 +79,5 @@ Our future plans for EpicEats include implementing:
 
 - Support for multiple languages and currencies.
 - Enhanced personalization features.
-- Stay tuned for these exciting updates!
 
 We hope you enjoy using EpicEats! Bon appétit! 🍽️
