@@ -1,6 +1,6 @@
-# Food Delivery App 🍔
+# EpicEats - Food Ordering App 🍔
 
-The Food Delivery App is a comprehensive, full-stack application that revolutionizes the way people order and enjoy their favorite foods. This application seamlessly combines a user-friendly web interface built with Next.js, Tailwind CSS, TypeScript, and React, with an elegant mobile app created using React Native, Tailwind CSS, TypeScript, and React Navigation.
+EpicEats is a comprehensive, full-stack application that revolutionizes the way people order and enjoy their favorite foods. This application seamlessly combines a user-friendly web interface built with Next.js, Tailwind CSS, TypeScript, and React, with an elegant mobile app created using React Native, Tailwind CSS, TypeScript, and React Navigation.
 
 ## Features 🚀
 
@@ -9,6 +9,7 @@ The Food Delivery App is a comprehensive, full-stack application that revolution
 - Real-time order tracking.   
 - User authentication and profiles.
 - Easy-to-use admin panel for managing the app.
+
 
 
 ## Technologies Used 🛠️
@@ -31,7 +32,7 @@ The Food Delivery App is a comprehensive, full-stack application that revolution
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/) (or your database of choice)
-
+- [Mongoose](https://mongoosejs.com/)
 
 
 ## Getting Started 🏗️
@@ -48,25 +49,20 @@ The Food Delivery App is a comprehensive, full-stack application that revolution
     cd admin
     npm install or yarn or pnpm install
     cd ../my-app
-    yarn or npm install or pnpm install
+    yarn 
     cd ../server
-    yarn or npm install or pnpm install
+    yarn
    ```
-3. Install the dependencies:
 
-   ```bash
-   npm install
-
-   ```
-4. Start the development server:
+3. Start the development server:
 
    ```bash
     cd admin
-    npm run dev or yarn dev or pnpm dev
+    yarn dev
     cd ../my-app
-    yarn start or npm start or pnpm start
+    yarn start 
     cd ../server
-    yarn start or npm start or pnpm start
+    yarn start 
     ```
 
 ## Contact 📧
@@ -80,4 +76,4 @@ Our future plans for EpicEats include implementing:
 - Support for multiple languages and currencies.
 - Enhanced personalization features.
 
-We hope you enjoy using EpicEats! Bon appétit! 🍽️
+We hope you enjoy using EpicEats! Bon appétit! 🍽️ 
