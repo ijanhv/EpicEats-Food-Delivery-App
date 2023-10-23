@@ -11,7 +11,9 @@ The Food Delivery App is a comprehensive, full-stack application that revolution
 - User authentication and profiles.
 - Easy-to-use admin panel for managing the app.
 
+<details><summary>
 ## Technologies Used 🛠️
+</summary>
 
 ### Web App
 - [Next.js](https://nextjs.org/)
@@ -30,6 +32,8 @@ The Food Delivery App is a comprehensive, full-stack application that revolution
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/) (or your database of choice)
+
+</details>
 
 ## Getting Started 🏗️
 
