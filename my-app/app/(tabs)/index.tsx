@@ -45,7 +45,7 @@ export default function TabOneScreen() {
   const featuredItems = menuItems?.filter((item) => item.featured);
 
   if (isPending) return <Text>Loading...</Text>;
-  if (isError) return <Text>Error</Text>;
+  if (isError) return      <SafeAreaView><Text>Error</Text></SafeAreaView>;
 
   return (
     <>
