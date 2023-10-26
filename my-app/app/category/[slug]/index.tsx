@@ -43,13 +43,18 @@ export default function Page() {
                     {" "}
                     {tag}
                   </Text>
+
                 ))}
+                      <View className="bg-blue-800 my-200 text-white m-3 p-1 rounded-md w-28 "><Text className="mx-auto flex font-semibold text-white w-full">Add to cart</Text></View>
+
               </View>
             </View>
             <Text className="font-bold text-xl">₹ {item.price}</Text>
           </View>
+          
         ))}
       </View>
+
     </SafeAreaView>
   );
 }

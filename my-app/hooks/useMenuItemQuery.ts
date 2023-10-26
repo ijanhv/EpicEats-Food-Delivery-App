@@ -2,7 +2,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 
 export const fetchMenuItems = async () => {
-  const { data } = await axios.get(`https://epiceats-p99r.onrender.com/api/menu/get`);
+  const { data } = await axios.get(`http://localhost:8800/api/menu/get`);
   return data;
 };
 
