@@ -1,4 +1,4 @@
-# EpicEats - Food Ordering App 🍔
+# EpicEats - Food Ordering App 🍔🍲
 
 EpicEats is a comprehensive, full-stack application that revolutionizes the way people order and enjoy their favorite foods. This application seamlessly combines a user-friendly web interface built with Next.js, Tailwind CSS, TypeScript, and React, with an elegant mobile app created using React Native, Tailwind CSS, TypeScript, and React Navigation.
 
@@ -9,7 +9,6 @@ EpicEats is a comprehensive, full-stack application that revolutionizes the way 
 - Real-time order tracking.   
 - User authentication and profiles.
 - Easy-to-use admin panel for managing the app.
-
 
 
 ## Technologies Used 🛠️
@@ -47,7 +46,7 @@ EpicEats is a comprehensive, full-stack application that revolutionizes the way 
    ```bash
     cd EpicEats-Food-Delivery-App
     cd admin
-    npm install or yarn or pnpm install
+    yarn
     cd ../my-app
     yarn 
     cd ../server
