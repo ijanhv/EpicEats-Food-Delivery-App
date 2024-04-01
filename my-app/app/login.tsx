@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { useState } from "react";
 import {
@@ -10,20 +9,21 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
+import { RadioButton } from "react-native-paper";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
-import { selectUser, setUser } from "../redux/features/UserSlice";
+import { setUser } from "../redux/features/UserSlice";
 import jwt_decode from "jwt-decode";
-import { Navigation } from 'react-native-navigation';
-import RegisterScreen from "./register";
 import { Link, useNavigation, useRootNavigation } from "expo-router";
 import { router } from "expo-router";
-
+import { apiUrl } from "../constants/apiUrl";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   const dispatch = useDispatch();
 
@@ -32,13 +32,11 @@ const LoginScreen = () => {
   const handleLogin = () => {
     const user = { email, password };
 
-    
-
     console.log(user);
     // sent a POST request to /api/user/login
 
     axios
-      .post("http://localhost:8800/api/user/login", user)
+      .post(`${apiUrl}/api/user/login`, user)
       .then((res) => {
         console.log(res.data);
         const token = res.data.token;
@@ -46,9 +44,7 @@ const LoginScreen = () => {
         const decodedToken = jwt_decode(token);
         dispatch(setUser(decodedToken));
         Alert.alert("Login successful");
-        router.push('/(tabs)');
-        // Navigation.registerComponent('Home', () => );
-
+        router.push("/(tabs)");
       })
       .catch((err) => {
         Alert.alert("Login failed, please try again");
@@ -87,14 +83,10 @@ const LoginScreen = () => {
             onChangeText={(text) => setPassword(text)}
           />
 
+         
           <View className="flex flex-col justify-between mt-8">
             <Link href="/register">
-            <Text
-            
-              className="text-gray-500"
-            >
-              Don't have an account?
-            </Text>
+              <Text className="text-gray-500">Don't have an account?</Text>
             </Link>
           </View>
           <TouchableOpacity

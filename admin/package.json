@@ -33,6 +33,7 @@
     "date-fns": "^2.30.0",
     "firebase": "^10.5.0",
     "firebase-tools": "^12.7.0",
+    "js-cookie": "^3.0.5",
     "lucide-react": "^0.287.0",
     "next": "13.5.4",
     "next-themes": "^0.2.1",
@@ -47,6 +48,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

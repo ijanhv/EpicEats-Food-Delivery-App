@@ -10,7 +10,7 @@ export const useMenuItems = () => {
   useEffect(() => {
     const getMenuItems = async () => {
       try {
-        const response = await axios.get(`http:localhost:8800/api/menu/get`);
+        const response = await axios.get(`${apiUrl}/api/menu/get`);
         setMenuItems(response.data);
       } catch (error) {
         console.log("error getting menu items", error);

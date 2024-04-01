@@ -69,3 +69,9 @@ interface RevenueByMonth {
     Dec: number;
     
 }
+
+
+interface TLogin {
+    email: string;
+    password: string;
+}

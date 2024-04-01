@@ -2,26 +2,51 @@ import Order from "../models/Order.js";
 import User from "../models/User.js";
 import { format } from "date-fns";
 import axios from "axios";
+import Razorpay from "razorpay"
 
 // Place a new order
 export const placeOrder = async (req, res) => {
   try {
     // Get order details from the request body
-    const { customer, items, total } = req.body;
-
+    const { customer, items, total, location } = req.body;
+    console.log(req.body)
     // Create a new order
     const order = new Order({
       customer,
       items,
       total,
+      location
+    });
+    // Create a Razorpay instance
+    const razorpayInstance = new Razorpay({
+      key_id: "rzp_test_PiOhhgG5r4Vjci",
+      key_secret: "OQZZKyKqQ660whrroh3sk8Dp",
     });
 
+    // Create an order on the Razorpay server
+    const razorpayOrder = await razorpayInstance.orders.create({
+      amount: total,
+      currency: "INR",
+      receipt: "receipt#1",
+      notes: {
+        key1: "value3",
+        key2: "value2",
+      },
+    });
+
+    // Log the Razorpay order information
+    console.log(razorpayOrder);
+
+ 
+
+    // Update the user document with the new order ID
     await User.updateOne({ _id: customer }, { $push: { orders: order._id } });
 
     // Save the order to the database
     const savedOrder = await order.save();
 
-    res.status(201).json(savedOrder);
+    // Send the response with the saved order and Razorpay order information
+    res.status(201).json({ order: savedOrder, razorpayOrder });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -197,7 +222,6 @@ export const getDashboardDetails = async (req, res) => {
   }
 };
 
-
 // export const getRevnueByDay = async (req, res) => {
 //   try {
 //     const orders = await Order.find();
@@ -232,18 +256,18 @@ export const getRevnueByDay = async (req, res) => {
 
     // Create an object to store revenue data for each day of the week
     const dayRevenue = {
-      "Sunday": 0,
-      "Monday": 0,
-      "Tuesday": 0,
-      "Wednesday": 0,
-      "Thursday": 0,
-      "Friday": 0,
-      "Saturday": 0,
+      Sunday: 0,
+      Monday: 0,
+      Tuesday: 0,
+      Wednesday: 0,
+      Thursday: 0,
+      Friday: 0,
+      Saturday: 0,
     };
 
     orders.forEach((order) => {
       const date = new Date(order.createdAt);
-      const dayOfWeek = date.toLocaleString('en-US', { weekday: 'long' });
+      const dayOfWeek = date.toLocaleString("en-US", { weekday: "long" });
       dayRevenue[dayOfWeek] += order.total;
     });
 
@@ -257,31 +281,31 @@ export const getRevnueByDay = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
 
 export const getRevenueByMonth = async (req, res) => {
   try {
     const orders = await Order.find();
-    
+
     // Create an object to store revenue data for each month
     const monthRevenue = {
-      "Jan": 0,
-      "Feb": 0,
-      "Mar": 0,
-      "Apr": 0,
-      "May": 0,
-      "Jun": 0,
-      "Jul": 0,
-      "Aug": 0,
-      "Sep": 0,
-      "Oct": 0,
-      "Nov": 0,
-      "Dec": 0,
+      Jan: 0,
+      Feb: 0,
+      Mar: 0,
+      Apr: 0,
+      May: 0,
+      Jun: 0,
+      Jul: 0,
+      Aug: 0,
+      Sep: 0,
+      Oct: 0,
+      Nov: 0,
+      Dec: 0,
     };
 
     orders.forEach((order) => {
       const date = new Date(order.createdAt);
-      const month = date.toLocaleString('en-US', { month: 'short' });
+      const month = date.toLocaleString("en-US", { month: "short" });
       monthRevenue[month] += order.total;
     });
 
@@ -295,4 +319,4 @@ export const getRevenueByMonth = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};

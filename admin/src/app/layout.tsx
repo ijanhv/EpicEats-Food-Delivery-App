@@ -11,9 +11,6 @@ import { Toast } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
-// const inter = Inter({ subsets: ["latin"] });
-// const lora = Lora({ subsets: ["latin"] });
-// const source_sans_3 = Source_Sans_3({ subsets: ["latin"] });
 const figtree = Figtree({ subsets: ["latin"] });
 
 export default function RootLayout({

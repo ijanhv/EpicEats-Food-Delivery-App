@@ -6,10 +6,11 @@ import {
 } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
+import { apiUrl } from "@/lib/url";
 
 const fetchOrders = async () => {
   const { data } = await axios.get(
-    `http://localhost:8800/api/order/get-orders`
+    `${apiUrl}/api/order/get-orders`
   );
   return data;
 };
@@ -25,7 +26,7 @@ export const useFetchOrdersQuery = (): UseQueryResult<Order[]> => {
 
 const fetchTodaysOrders = async () => {
   const { data } = await axios.get(
-    `http://localhost:8800/api/order/todays-orders`
+    `${apiUrl}/api/order/todays-orders`
   );
   return data;
 };
@@ -33,8 +34,9 @@ const fetchTodaysOrders = async () => {
 export const useFetchTodaysOrdersQuery = (): UseQueryResult<Order[]> => {
   return useQuery({
     queryKey: ["todays-orders"],
-    // refetchOnWindowFocus: true,
-    // refetchInterval: 2000,
+    refetchOnWindowFocus: "always",
+    refetchOnMount: "always",
+    refetchInterval: 2000,
     queryFn: () => fetchTodaysOrders(),
     staleTime: Infinity,
   });
@@ -44,13 +46,13 @@ export const useFetchTodaysOrdersQuery = (): UseQueryResult<Order[]> => {
 
 const updateOrderStatus = async (id: string, status: string) => {
   const { data } = await axios.patch(
-    `http://localhost:8800/api/order/update-order/${id}`,
+    `${apiUrl}/api/order/update-order/${id}`,
     { status }
   );
   return data;
 };
 
-export const useUpdateOrderStatus = () => {
+export const useUpdateOrderStatus = (orderId: string) => {
   const queryClient = useQueryClient();
   return useMutation(
     (data: { id: string; status: string }) =>
@@ -58,6 +60,7 @@ export const useUpdateOrderStatus = () => {
     {
       onSuccess: (data) => {
         queryClient.invalidateQueries({ queryKey: ["todays-orders"] });
+        queryClient.invalidateQueries({ queryKey: ["todays-orders", orderId ]})
         toast({
           title: `Order status updated to ${data.status}`,
           variant: "success",
@@ -77,7 +80,7 @@ export const useUpdateOrderStatus = () => {
 
 const getDashboardDetails = async () => {
   const { data } = await axios.get(
-    `http://localhost:8800/api/order/dashboard`
+    `${apiUrl}/api/order/dashboard`
   );
   return data;
 };
@@ -97,7 +100,7 @@ export const useGetDashboardDetails = (): UseQueryResult<DashboardDetails> => {
 
 const getRevenueByDay = async () => {
   const { data } = await axios.get(
-    `http://localhost:8800/api/order/revenue-by-day`
+    `${apiUrl}/api/order/revenue-by-day`
   );
   return data;
 };
@@ -115,7 +118,7 @@ export const useGetRevenueByDay = (): UseQueryResult<RevenueByDay> => {
 
 const getRevenueByMonth = async () => {
   const { data } = await axios.get(
-    `http://localhost:8800/api/order/revenue-by-month`
+    `${apiUrl}/api/order/revenue-by-month`
   );
   return data;
 };

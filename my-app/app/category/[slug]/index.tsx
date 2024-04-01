@@ -2,6 +2,9 @@ import { useLocalSearchParams } from "expo-router";
 import { Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFetchMenuItemsByCategoryQuery } from "../../../hooks/useMenuItemQuery";
+import { useDispatch, useSelector } from "react-redux";
+import { addToBasket, removeFromBasket, selectBasketItemsWithId } from "../../../redux/features/BasketSlice";
+import MenuItemCard from "../../../components/MenuItemCard";
 
 export default function Page() {
   const { slug } = useLocalSearchParams();
@@ -16,45 +19,27 @@ export default function Page() {
   if (isError) return <Text>Error</Text>;
 
 
+
+
+
   return (
     <SafeAreaView>
       <View className="flex flex-col px-5">
-        <Text className="text-2xl font-bold text-center mt-10">
+        <Text className="text-2xl font-bold text-center ">
           {slug.toString().toUpperCase()}
         </Text>
 
-        {menuItems?.map((item) => (
-          <View
-            className="flex flex-row items-center justify-between bg-white rounded-lg border-b border-gray-200 py-3 px-5 my-2 "
-            key={item._id}
-          >
-            <View className="flex flex-row items-center gap-4 ">
-              <Image
-                source={{ uri: item.image }}
-                className="h-20 w-20 rounded-full"
-              />
-              <View>
-                <Text className="font-bold">{item.name}</Text>
-                <Text className="text-gray-500 w-44 text-xs flex-wrap">
-                  {item.description}
-                </Text>
-                {item?.tags?.map((tag) => (
-                  <Text className="text-[10px] font-semibold  text-blue-800">
-                    {" "}
-                    {tag}
-                  </Text>
 
-                ))}
-                      <View className="bg-blue-800 my-200 text-white m-3 p-1 rounded-md w-28 "><Text className="mx-auto flex font-semibold text-white w-full">Add to cart</Text></View>
+     
+          {menuItems?.map((item) => (
+            <MenuItemCard
+              key={item._id}
+              item={item}
+  
+            />
+          ))}
 
-              </View>
-            </View>
-            <Text className="font-bold text-xl">₹ {item.price}</Text>
-          </View>
-          
-        ))}
       </View>
-
     </SafeAreaView>
   );
 }

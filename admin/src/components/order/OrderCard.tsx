@@ -17,7 +17,7 @@ interface OrderCardProps {
 const OrderCard = ({ order }: OrderCardProps) => {
   console.log(order);
 
-  const { mutate, isLoading } = useUpdateOrderStatus();
+  const { mutate, isLoading } = useUpdateOrderStatus(order?._id as string);
 
   const handleUpdateOrderStatus = async (status: string) => {
     mutate({

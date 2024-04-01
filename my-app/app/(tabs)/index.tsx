@@ -40,17 +40,26 @@ export default function TabOneScreen() {
     fetchUser();
   }, []);
 
-  const todaySpecial = menuItems?.filter((item: any) => item.tags.includes("todays-special"));
-  const popularItems = menuItems?.filter((item : any) => item.tags.includes("popular"));
+  const todaySpecial = menuItems?.filter((item: any) =>
+    item.tags.includes("todays-special")
+  );
+  const popularItems = menuItems?.filter((item: any) =>
+    item.tags.includes("popular")
+  );
   const featuredItems = menuItems?.filter((item) => item.featured);
 
   if (isPending) return <Text>Loading...</Text>;
-  if (isError) return      <SafeAreaView><Text>Error</Text></SafeAreaView>;
+  if (isError)
+    return (
+      <SafeAreaView>
+        <Text>Error</Text>
+      </SafeAreaView>
+    );
 
   return (
-    <>
+    <SafeAreaView className="bg-gray-100">
       <BasketIcon />
-      <SafeAreaView>
+      {/* <SafeAreaView> */}
         {/* HEADER */}
 
         <View className="flex-row pb-3 items-center mx-4 space-x-2 bg-gray-100">
@@ -62,7 +71,7 @@ export default function TabOneScreen() {
           />
           <View className="flex-1 bg-gray-100">
             <Text className="font-bold text-gray-400 text-xs">Welcome!</Text>
-            <Text className="font-bold text-lg">
+            <Text className="font-bold text-lg text-black">
               {userData ? userData.name : "Guest"}
               <Text className="font-bold text-lg text-green-500"> 👋</Text>
 
@@ -125,7 +134,7 @@ export default function TabOneScreen() {
         </ScrollView>
 
         {/* BODY */}
-      </SafeAreaView>
-    </>
+      {/* </SafeAreaView> */}
+    </SafeAreaView>
   );
 }

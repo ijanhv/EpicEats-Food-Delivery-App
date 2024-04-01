@@ -6,9 +6,10 @@ import {
 } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
+import { apiUrl } from "@/lib/url";
 
 const fetchMenuItems = async () => {
-  const { data } = await axios.get(`http://localhost:8800/api/menu/get`);
+  const { data } = await axios.get(`${apiUrl}/api/menu/get`);
   return data;
 };
 
@@ -31,7 +32,7 @@ const createMenuItem = async ({
   price,
 }: MenuItem) => {
   const { data } = await axios.post(
-    `http://localhost:8800/api/menu/menuItem/create`,
+    `${apiUrl}/api/menu/menuItem/create`,
     {
       name,
       category,
@@ -79,7 +80,7 @@ const updateMenuItem = async ({
   price,
 }: MenuItem) => {
   const { data } = await axios.put(
-    `http://localhost:8800/api/menu/menu-item/update/${_id}`,
+    `${apiUrl}/api/menu/menu-item/update/${_id}`,
     {
       
       name,

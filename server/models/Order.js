@@ -18,6 +18,10 @@ const OrderSchema = new Schema({
       quantity: { type: Number, required: true },
     },
   ],
+  location : {
+    type: String,
+
+},
 
   total: { type: Number, required: true },
   status: {

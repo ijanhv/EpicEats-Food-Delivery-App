@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { apiUrl } from "../constants/apiUrl";
+import RazorpayCheckout from "react-native-razorpay";
+import { Alert } from "react-native";
 
 const fetchOrders = async ({ id }: { id: string }) => {
- 
   const { data } = await axios.get(
-    `http:localhost:8800/api/order/get-customer-orders/${id}`
+    `${apiUrl}/api/order/get-customer-orders/${id}`
   );
   return data;
 };
@@ -20,9 +22,11 @@ export const useFetchOrdersQuery = ({ id }: { id: string }) => {
 
 const createOrder = async (orderData: Order) => {
   const response = await axios.post(
-    "http://localhost:8800/api/order/place-order",
+    `${apiUrl}/api/order/place-order`,
+
     orderData
   );
+
   return response.data;
 };
 
@@ -32,6 +36,8 @@ export const useCreateOrderMutation = () => {
     mutationFn: createOrder,
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["orders"] });
+      Alert.alert("Order place successfully!");
+
       console.log(data);
     },
     onError: (error) => {

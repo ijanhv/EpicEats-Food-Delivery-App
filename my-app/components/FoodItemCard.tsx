@@ -100,19 +100,19 @@ const FoodItemCard = ({
           ) : (
             // plus minus buttons
 
-            <View className="bg-white px-4">
+            <View className=" px-4">
               <View className="flex-row items-center space-x-2 pb-3">
                 <TouchableOpacity
                   disabled={!items.length}
                   onPress={removeItemFromBasket}
                 >
-                  <MinusCircleIcon size={30} />
+                  <MinusCircleIcon size={30} color="blue"  />
                 </TouchableOpacity>
                 <Text>{items.length}</Text>
                 <TouchableOpacity
                   onPress={addItemToBasket}
                 >
-                  <PlusCircleIcon size={30} />
+                  <PlusCircleIcon size={30} color="blue" />
                 </TouchableOpacity>
               </View>
             </View>

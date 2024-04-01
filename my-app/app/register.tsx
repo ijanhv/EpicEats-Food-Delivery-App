@@ -9,15 +9,17 @@ import {
   Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {  useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import TabOneScreen from "./(tabs)";
 import { Navigation } from "react-native-navigation";
 import LoginScreen from "./login";
 import { Link } from "expo-router";
-
+import { apiUrl } from "../constants/apiUrl";
+import { RadioButton } from "react-native-paper";
 
 const RegisterScreen = () => {
+  const [value, setValue] = React.useState("student");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -26,15 +28,15 @@ const RegisterScreen = () => {
   const navigation = useNavigation();
 
   const handleRegister = () => {
-    const user = { name, email, password, mobile };
+    const user = { name, email, password, mobile, role: value };
 
     // sent a POST request to /api/user/register
     axios
-      .post(`http:localhost:8800/api/user/register`, user)
+      .post(`${apiUrl}/api/user/register`, user)
       .then((res) => {
         console.log(res.data);
         Alert.alert("Registration successful");
-        Navigation.registerComponent('Home', () => TabOneScreen);
+        Navigation.registerComponent("Home", () => TabOneScreen);
         setEmail("");
         setPassword("");
         setName("");
@@ -42,11 +44,9 @@ const RegisterScreen = () => {
       })
       .catch((err) => {
         Alert.alert("Registration failed");
-        console.log(err)
+        console.log(err);
       });
-
-
-  }
+  };
 
   return (
     <SafeAreaView className="bg-white">
@@ -61,9 +61,9 @@ const RegisterScreen = () => {
           Welcome to EpicEats! 😋
         </Text>
       </View>
-      <View className=" h-1/2 bg-white rounded-2xl mt-[-150] mb-[200] ">
+      <View className=" h-1/2 bg-white rounded-2xl mt-[-160] mb-[150] ">
         <View className="justify-center px-10 ">
-          <Text className="text-center text-2xl font-bold pt-8">
+          <Text className="text-center text-2xl font-bold pt-14">
             Sign Up Now
           </Text>
 
@@ -93,15 +93,30 @@ const RegisterScreen = () => {
             onChangeText={(text) => setPassword(text)}
           />
 
+          <View className="text-black mt-3 flex ">
+            <RadioButton.Group
+              onValueChange={(newValue) => setValue(newValue)}
+              value={value}
+            >
+              <View>
+                <Text>Student</Text>
+                <RadioButton value="student" />
+              </View>
+              <View>
+                <Text>Faculty</Text>
+                <RadioButton value="faculty" />
+              </View>
+            </RadioButton.Group>
+          </View>
           <View className="flex flex-col justify-between mt-8">
             <Link href="/login">
-            <Text
-            className="text-gray-500">Already have an account?</Text>
+              <Text className="text-gray-500">Already have an account?</Text>
             </Link>
           </View>
           <TouchableOpacity
-          onPress={handleRegister}
-          className="bg-blue-800 w-full rounded-full px-3 py-2 my-5 justify-center ">
+            onPress={handleRegister}
+            className="bg-blue-800 w-full rounded-full px-3 py-2 my-5 justify-center "
+          >
             <Text className="text-white font-bold text-center text-lg">
               Sign Up
             </Text>

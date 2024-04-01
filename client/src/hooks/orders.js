@@ -10,7 +10,7 @@ export const useMyOrders = ({ id }) => {
       console.log("id", id);
       try {
         const response = await axios.get(
-          `http:localhost:8800/api/order/get-customer-orders/${id}`
+          `${apiUrl}/api/order/get-customer-orders/${id}`
         );
         setOrders(response.data);
       } catch (error) {

@@ -1,12 +1,15 @@
 import { router } from "expo-router";
 import React from "react";
 import { Image, TouchableOpacity, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { addToBasket, removeFromBasket, selectBasketItemsWithId } from "../redux/features/BasketSlice";
 
 interface CategoryCardProps {
   imgUrl: string;
   title: string;
   color: string;
   link: string;
+
 }
 
 const CategoryCard = ({
@@ -14,7 +17,11 @@ const CategoryCard = ({
   title,
   color,
   link,
+
 }: CategoryCardProps) => {
+
+
+  
   return (
     <TouchableOpacity
       className="relative mr-2"

@@ -33,16 +33,7 @@ export default function CategoryLayout() {
         }}
       />
 
-      {/* <Tabs.Screen
-        // Name of the route to hide.
-        name="[slug]/index"
-        options={{
-          href: null,
-        }}
-      /> */}
-
-      {/* Different categories */}
-
+     
       <Tabs.Screen
         name="[slug]/index"
         options={{
@@ -50,10 +41,12 @@ export default function CategoryLayout() {
           href: {
             pathname: "/category/breakfast",
           },
+         
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="cart-arrow-down" color={color} />
+
           ),
-          headerShown: false,
+        
         }}
       />
     </Tabs>

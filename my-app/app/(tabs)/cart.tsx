@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { XCircleIcon } from "react-native-heroicons/solid";
 
+import RazorpayCheckout from "react-native-razorpay";
+
 import {
   emptyBasket,
   removeFromBasket,
@@ -21,8 +23,7 @@ import {
 } from "../../redux/features/BasketSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useCreateOrderMutation } from "../../hooks/useOrdersQuery";
-import { isLoading } from "expo-font";
-import { router } from "expo-router";
+import { TextInput } from "react-native-paper";
 
 // {"description": "Crispy rice crepe served with various chutneys and sambar.", "id": "652badee1c0e88d88c08bf31", "imgUrl": "https://i.pinimg.com/originals/e8/48/ca/e848ca06cc72cfb473c1d96f2ea75183.png", "price": 55, "title": "Dosa"}, {"description": "Crispy rice crepe served with various chutneys and sambar.", "id": "652badee1c0e88d88c08bf31", "imgUrl": "https://i.pinimg.com/originals/e8/48/ca/e848ca06cc72cfb473c1d96f2ea75183.png", "price": 55, "title": "Dosa"}]
 interface CartItem {
@@ -34,7 +35,7 @@ interface CartItem {
 
 const Cart = () => {
   const [user, setUser] = useState<User | null>(null);
-
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -58,11 +59,9 @@ const Cart = () => {
     };
   }>({});
 
-
   const navigation = useNavigation();
 
   const items: CartItem[] = useSelector(selectBasketItems);
-
 
   const basketTotal = useSelector(selectBasketTotal);
 
@@ -107,8 +106,6 @@ const Cart = () => {
     calculateItemQuantity();
   }, [items]);
 
-
-
   const orderData: {
     customer: string;
     items: Array<{ menuItem: string; quantity: number }>;
@@ -117,55 +114,62 @@ const Cart = () => {
     customer: user?.userId || "",
     items: [],
     total: 0,
+    
   };
 
-
-   orderData.items = Object.keys(itemDetails).map((key) => ({
+  orderData.items = Object.keys(itemDetails).map((key) => ({
     menuItem: key,
     quantity: itemDetails[key].quantity,
-    // subtotal
-
   }));
 
   orderData.total = basketTotal;
 
-
-
-  const { mutate: placeOrder, isPending, isSuccess } = useCreateOrderMutation();
+  const {
+    mutate: placeOrder,
+    isPending,
+    isSuccess,
+    data,
+  } = useCreateOrderMutation();
+  console.log("HELLO", data!);
 
   const createOrder = () => {
     try {
-      const res = placeOrder(orderData as any);
-      console.log(res);
-      Alert.alert("Order Placed Successfully");
-      router.push("/");
+      placeOrder({...orderData as any, location});
+
+      // var options = {
+      //   description: "Buy food item",
+      //   image: "https://i.imgur.com/3g7nmJC.png",
+      //   currency: "INR",
+      //   key: "rzp_test_pyVHgtbI278ba6",
+      //   amount: basketTotal * 100,
+      //   name: "test order",
+      //   // @ts-ignore
+      //   order_id: data?.razorpayOrder?.id,
+      //   prefill: {
+      //     email: "xyz@gmail.com",
+      //     contact: "9999999999",
+      //     name: "User 1",
+      //   },
+      //   theme: { color: "#F37254" },
+      // };
+
+      // // @ts-ignore
+      // RazorpayCheckout?.open(options)
+      //   .then((data) => {
+      //     // handle success
+      //     alert(`Success: ${data.razorpay_payment_id}`);
+      //   })
+      //   .catch((error: any) => {
+      //     // handle failure
+      //     console.log("error", error)
+      //     // alert(`Error: ${error.code} | ${error.description}`);
+      //   });
+
       dispatch(emptyBasket());
     } catch (error) {
       console.log(error);
     }
   };
- 
-
-
-
-  // post request to create order use axios
-  // const createOrder = async () => {
-  //   try {
-  //     await axios
-  //       .post("http://localhost:8800/api/order/place-order", orderData)
-  //       .then((res) => {
-  //         console.log(res.data);
-  //         Alert.alert("Order Placed Successfully");
-  //         // empty the basket
-  //         dispatch(emptyBasket());
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -240,6 +244,16 @@ const Cart = () => {
               </TouchableOpacity>
             </View>
           ))}
+          {user?.role === "faculty" && items.length > 0 && (
+            <View className="mx-5">
+              <TextInput
+                className="mt-5 order border-gray-200  bg-gray-100"
+                placeholder="Enter Location"
+                value={location}
+                onChangeText={(text) => setLocation(text)}
+              />
+            </View>
+          )}
         </ScrollView>
 
         <View className="p-5 bg-white mt-5 space-y-4">

@@ -19,6 +19,7 @@ interface Order {
     status?: string;
     createdAt?: string;
     updatedAt?: string;
+    location?: string;
 }
 
 interface User {

@@ -13,3 +13,8 @@ export const menuItemSchema = z.object({
   tags: z.array(z.string()).refine((value) => value.some((item) => item)),
   price: z.number().optional(),
 });
+
+export const userLoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+});
