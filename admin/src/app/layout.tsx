@@ -7,7 +7,7 @@ import { Figtree } from "next/font/google";
 import { UserNav } from "@/components/dashboard/UserNav";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
-import { Toast } from "@/components/ui/toast";
+import { ToasterSonner } from "@/components/ui/sonner"
 import { Toaster } from "@/components/ui/toaster";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
@@ -27,6 +27,7 @@ export default function RootLayout({
         <ReactQueryDevtools initialIsOpen={false} />
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Toaster />
+            <ToasterSonner />
             <div className="border-b dark:border-gray-600">
               <div className="flex h-16 items-center max-w-7xl    mx-auto px-5 sm:px-4 xl:px-0 ">
                 <MainNav className="" />

@@ -34,6 +34,9 @@ const Recommendations = () => {
       </SafeAreaView>
     );
     console.log(menuItems);
+
+
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="p-5 border-b border-[#00CCBB] bg-white shadow-sm">
@@ -68,6 +71,7 @@ const Recommendations = () => {
         showsHorizontalScrollIndicator={false}
         className="pt-4 mb-10"
       >
+
         {menuItems?.map((dish, i) => (
           <FoodItemCard
             key={i}

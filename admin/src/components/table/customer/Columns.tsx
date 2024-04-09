@@ -9,42 +9,48 @@ import { Button } from "../../ui/button";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 
-export const columns: ColumnDef<Order>[] = [
+export const columns: ColumnDef<Customer>[] = [
 
   {
-    accessorKey: "customer.name",
+    accessorKey: "name",
     header: "Customer Name",
   },
   {
-    accessorKey: "customer.email",
+    accessorKey: "email",
     header: "Customer Email",
   },
   {
-    accessorKey: "customer.mobile",
+    accessorKey: "mobile",
     header: "Customer Phone",
   },
+  
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "createdAt",
+    header: "Date",
+    cell: ({ row }) => {
+      return (
+        <div className="text-left font-medium">
+         
+            {format(new Date(row.original.createdAt), "PPP")}
+
+        </div>
+      );
+    }
+  },
+  {
+    accessorKey: "role",
+    header: "Role",
     cell: ({ row }) => {
       return (
         <div className="text-left font-medium">
           <span
-            className={`bg-orange-400 px-2 py-1 text-xs font-bold leading-none text-white uppercase rounded-full`}
+            className={`bg-orange-400 capitalize px-2 py-1 text-xs font-bold leading-none text-white uppercase rounded-full`}
           >
-            {row.original.status}
+            {row.original.role}
           </span>
         </div>
       );
-    },
-  },
-  {
-    accessorKey: "createdAtDate",
-    header: "Date",
-  },
-  {
-    accessorKey: "createdAtTime",
-    header: "Time",
+    }
   },
   {
     id: "actions",

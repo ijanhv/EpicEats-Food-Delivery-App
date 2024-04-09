@@ -1,8 +1,11 @@
 import Service from "../models/Service.js";
+import User from "../models/User.js";
 
 export const callForUtensils = async (req, res) => {
   try {
-    const { userId, location } = req.body;
+    const { userId, location, serviceType } = req.body;
+
+    console.log(userId, location, serviceType);
     const service = new Service({
       userId,
       location,
@@ -28,8 +31,9 @@ export const getCallForUtensils = async (req, res) => {
 
     const formattedService = service.map((service) => ({
       _id: service._id,
-      user: service.userId,
+      user: User.findById(service.userId),
       location: service.location,
+      serviceType: service.serviceType,
     }));
 
     res.status(200).json(formattedService);
@@ -50,6 +54,7 @@ export const getTodaysService = async (req, res) => {
       _id: service._id,
       user: service.userId,
       location: service.location,
+      serviceType: service.serviceType,
     }));
 
     res.status(200).json(formattedService);

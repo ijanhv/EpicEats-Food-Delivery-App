@@ -13,7 +13,7 @@ const fetchOrders = async ({ id }: { id: string }) => {
 
 export const useFetchOrdersQuery = ({ id }: { id: string }) => {
   return useQuery({
-    queryKey: ["orders"],
+    queryKey: ["orders", id],
     refetchInterval: 4000,
     queryFn: () => fetchOrders({ id: id }),
     staleTime: Infinity,

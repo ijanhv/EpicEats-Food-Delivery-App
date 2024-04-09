@@ -18,7 +18,7 @@ export const columns: ColumnDef<MenuItem>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex items-center justify-center gap-3 mx-2">
-          <Avatar className="w-10 h-full rounded-full">
+          <Avatar className="w-14 h-14 rounded-full">
             <AvatarImage
               src={row.original.image as string}
               alt="@shadcn"
@@ -29,10 +29,7 @@ export const columns: ColumnDef<MenuItem>[] = [
       );
     },
   },
-  {
-    accessorKey: "_id",
-    header: "Menu Item ID",
-  },
+
   {
     accessorKey: "name",
     header: "Name",
@@ -43,7 +40,8 @@ export const columns: ColumnDef<MenuItem>[] = [
     cell: ({ row }) => {
       return (
         <div className="text-left font-medium">
-          <span className="bg-slate-700  border-green-600 w-10 h-10"> 
+          <span className=" w-10 h-10"> 
+            {row.original.veg ? "🥦" : "🍗"}
           </span>
         </div>
       );
@@ -68,7 +66,7 @@ export const columns: ColumnDef<MenuItem>[] = [
     header: "Tags",
     cell: ({ row }) => {
       return (
-        <div className="text-left font-medium flex flex-wrap">
+        <div className="text-left font-medium flex flex-wrap gap-y-2">
         {row.original.tags.map((tag) => (
           <span
             key={tag}

@@ -116,6 +116,7 @@ const Cart = () => {
     total: 0,
     
   };
+  // johndoe@gmail.com
 
   orderData.items = Object.keys(itemDetails).map((key) => ({
     menuItem: key,
@@ -134,6 +135,7 @@ const Cart = () => {
 
   const createOrder = () => {
     try {
+      console.log("ORDER DATA", orderData);
       placeOrder({...orderData as any, location});
 
       // var options = {
@@ -165,7 +167,9 @@ const Cart = () => {
       //     // alert(`Error: ${error.code} | ${error.description}`);
       //   });
 
-      dispatch(emptyBasket());
+      setTimeout(() => {
+     dispatch(emptyBasket())
+      }, 1000);
     } catch (error) {
       console.log(error);
     }

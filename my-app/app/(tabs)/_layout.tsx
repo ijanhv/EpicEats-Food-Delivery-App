@@ -2,7 +2,6 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 import { Pressable, useColorScheme } from "react-native";
 
-
 import Colors from "../../constants/Colors";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/UserSlice";
@@ -20,11 +19,8 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
   const user = useSelector(selectUser);
 
-  
- 
   return (
     <Tabs>
- 
       <Tabs.Screen
         name="index"
         options={{
@@ -57,19 +53,23 @@ export default function TabLayout() {
           ),
         }}
       />
-        <Tabs.Screen
+      <Tabs.Screen
         name="recommendations"
         options={{
           title: "Recomendations",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="star" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="star" color={color} />,
           headerShown: false,
-          
+        }}
+      />
+      <Tabs.Screen
+        name="bookings"
+        options={{
+          title: "Bookings",
+          tabBarIcon: ({ color }) => <TabBarIcon name="table" color={color} />,
+          headerShown: false,
         }}
       />
 
-      
       <Tabs.Screen
         name="profile"
         options={{
@@ -90,19 +90,16 @@ export default function TabLayout() {
           headerShown: false,
         }}
       />
- 
-  <Tabs.Screen
-    name="utensils"
-    options={{
-      title: "Service",
-      href: user?.role === "student" ? null : "/utensils",
-      tabBarIcon: ({ color }) => (
-        <TabBarIcon name="spoon" color={color} />
-      ),
-      headerShown: false,
-    }}
-  />
 
+      <Tabs.Screen
+        name="utensils"
+        options={{
+          title: "Service",
+          href: user?.role === "student" ? null : "/utensils",
+          tabBarIcon: ({ color }) => <TabBarIcon name="spoon" color={color} />,
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 }

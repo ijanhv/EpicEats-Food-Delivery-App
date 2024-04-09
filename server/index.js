@@ -9,6 +9,8 @@ import MenuRoute from "./routes/MenuItem.js";
 import OrderRoute from "./routes/Order.js";
 import ServiceRoute from "./routes/Service.js";
 import Recommendations from "./routes/Recommendations.js";
+import Booking from "./routes/Booking.js";
+import Seat from "./routes/Seat.js";
 
 import { saveToken } from "./config/firebase.js";
 
@@ -65,3 +67,5 @@ app.use("/api/menu", MenuRoute);
 app.use("/api/order", OrderRoute);
 app.use("/api/service", ServiceRoute)
 app.use("/api/recommendation", Recommendations)
+app.use("/api/booking", Booking)
+app.use("/api/seat", Seat)

@@ -38,3 +38,9 @@ interface BasketState {
     items: MenuItem[];
     total: number;
 }
+
+interface Seat {
+    _id: string;
+    status: string;
+    seatNumber: number;
+}

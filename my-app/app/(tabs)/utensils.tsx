@@ -26,18 +26,20 @@ const CallForUtensils = () => {
 
   const handleLogin = () => {
     console.log(user);
-    // sent a POST request to /api/user/login
 
     axios
       .post(`${apiUrl}/api/service/utensils`, {
         location,
         userId: user?.userId,
+        serviceType,
       })
       .then((res) => {
         console.log(res.data);
 
-        router.push("/utensils");
+        // router.push("/utensils");
         Alert.alert("Pick Up Utensils requested successfully");
+        setLocation("");
+        setServiceType("");
       })
       .catch((err) => {
         Alert.alert("Please try again");
