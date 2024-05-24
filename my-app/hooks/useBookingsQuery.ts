@@ -20,9 +20,10 @@ export const useFetchAllSeats = (): UseQueryResult<Seat[]> => {
     staleTime: Infinity,
     refetchOnMount: "always",
     refetchOnWindowFocus: "always",
+    refetchInterval: 3000,
   });
 };
-
+// /patil.janhavi1207@gmail.com
 
 const createBooking = async (bookingData: {
   userId: string;

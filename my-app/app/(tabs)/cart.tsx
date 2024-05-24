@@ -59,6 +59,10 @@ const Cart = () => {
     };
   }>({});
 
+//Siddhesh169kadam@gmaail.com       
+//siddhesh
+  // johndoe@gmail.com
+  // John@123
   const navigation = useNavigation();
 
   const items: CartItem[] = useSelector(selectBasketItems);
@@ -167,9 +171,9 @@ const Cart = () => {
       //     // alert(`Error: ${error.code} | ${error.description}`);
       //   });
 
-      setTimeout(() => {
-     dispatch(emptyBasket())
-      }, 1000);
+    //   setTimeout(() => {
+    //  dispatch(emptyBasket())
+    //   }, 1000);
     } catch (error) {
       console.log(error);
     }
